@@ -1,74 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kevin Roy Maglaqui</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 40px 20px;
-    }
-
-    .container {
-      text-align: center;
-      max-width: 800px;
-    }
-
-    .profile-pic {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ffffff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #cccccc;
-      margin-bottom: 40px;
-    }
-
-    .pic-showcase {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    @media (max-width: 600px) {
-      .profile-pic {
-        width: 140px;
-        height: 140px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>My Unique Web Card</title>
+    <style>
+        body {
+            background-color: #e0f7fa; /* Students must change this */
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            color: #333;
+        }
+        .card {
+            background-color: #ffffff;
+            border-left: 10px solid #00695c;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img class="profile-pic" src="kevin.jpg" alt="Kevin Roy Maglaqui">
-    <h1>Kevin Roy Maglaqui</h1>
-    <p>SLU BSIT 3</p>
-    <p>I am a third year student in Saint Louis University, I like cars, and right now I have three civics, a white a black and a red one, I also play guitar and love video games so much, I have a gaming PC and a bunch of consoles</p>
-    <img class="pic-showcase" src="cars.jpg" alt="My Cars">
-  </div>
+
+<div class="card">
+    <h1>Hello, I'm <span id="name">Kevin Roy Maglaqui</span></h1>
+    <p>ID Number: <span id="id">2234101</span></p>
+    <p>Fun Fact: <span id="fact">I love Cars! I have three!</span></p>
+    <p>Favorite Color: <span id="color">White and Orange and Pink!</span></p>
+
+    <div class="footer">
+        Last Edited: <span id="timestamp">3:29</span><br>
+        Page Signature: <span id="signature">kevinkevin</span>
+    </div>
+</div>
+
+<script>
+    // Timestamp
+    const timestamp = new Date().toLocaleString();
+    document.getElementById("timestamp").innerText = timestamp;
+
+    // Generate a unique hash (fake signature)
+    const name = document.getElementById("name").innerText.trim();
+    const id = document.getElementById("id").innerText.trim();
+    const color = document.getElementById("color").innerText.trim();
+    const data = name + id + color;
+
+    function simpleHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = (hash << 5) - hash + str.charCodeAt(i);
+            hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16);
+    }
+
+    document.getElementById("signature").innerText = simpleHash(data);
+</script>
+
 </body>
 </html>
